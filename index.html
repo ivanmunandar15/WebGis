@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebGis</title>
+    <title>Gisweb</title>
 
-    <!--load data css bootstrap-->
+    <!-- load css bootstrap-->
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 		
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,18 +27,17 @@
     crossorigin=""/>
 
     <script src="js/leaflet.ajax.js"></script>
-
-</head>
-<style>
-            .sidebar {
+    <style>
+        /* scrollable sidebar */
+        .sidebar {
             overflow: auto;
-            height: 100vh;
+            height: 60vh;
             
         }
-</style>
-<body>
+    </style>
 
-    <body>
+</head>
+<body>
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="custom-menu">
@@ -55,24 +54,30 @@
 	          </li>
 	        </ul>
 
-            <div class="footer">
-            </div>
-        </div>
-            </nav>
+            
+	        <div class="footer">
+	        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib.com</a>
+						  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+	        </div>
 
-            <!-- Page Content  -->
-            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-            <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-            <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+	      </div>
+    	</nav>
 
-            <div id="content" class="p-4 p-md-5 pt-5">
-                <h2 class="mb-4">Sistem Informasi Geografis | 3332190035</h2>
+        <!-- Page Content  -->
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+        <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+        <script src="https://unpkg.com/leaflet-ajax/dist/leaflet.ajax.min.js"></script>
+
         
-                <div id="map" style="width: 100%; height: 550px;"></div>
+      <div id="content" class="p-4 p-md-5 pt-5">
+        <h2 class="mb-4">Sistem Informasi Geografis | 3332190035</h2>
 
-         <script>
+        <div id="map" style="width: 100%; height: 550px;"></div>
+ 
+        <script>	
 
-         //osm layer
+        //osm layer
         var map = L.map('map').setView([-7.7946594, 110.3737491], 13);
         var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -108,7 +113,7 @@
         
         //batas administrasi ajax
         // add layer geojson
-        var batas_administrasi = new L.GeoJSON.AJAX(["data/batas_administrasi.geojson"], {
+            var batas_administrasi = new L.GeoJSON.AJAX(["data/batas_administrasi.geojson"], {
             style: function (feature) {
                 //random color
                 var color = '#' + Math.floor(Math.random() * 16777215).toString(16);
@@ -134,8 +139,8 @@
             },
         }).addTo(map);
 
-                // add geojson file
-            var rumahsakit = new L.GeoJSON.AJAX(["data/rumahsakit.geojson"], {
+        // add geojson file
+        var rumahsakit = new L.GeoJSON.AJAX(["data/rumahsakit.geojson"], {
             style: function (feature) {
                 return {
                     color: "#ff7800",
@@ -146,8 +151,8 @@
             }
         }).addTo(map);
 
-                // add geojson file
-            var sungai = new L.GeoJSON.AJAX(["data/sungai.geojson"], {
+        // add geojson file
+        var sungai = new L.GeoJSON.AJAX(["data/sungai.geojson"], {
             style: function (feature) {
                 return {
                     color: "#2C74B3",
@@ -158,10 +163,12 @@
             }
         }).addTo(map);
 
+
+
         /*===================================================
                       LAYER CONTROL               
           ===================================================*/
-          var baseLayers = {
+        var baseLayers = {
             "Satellite":googleSat,
             "Google Map":googleStreets,
             "OpenStreetMap": osm,
@@ -174,7 +181,11 @@
 
         L.control.layers(baseLayers, overlays).addTo(map);
 
-         </script>
-         
-</body>
+        </script>
+
+    </div>
+		</div>
+
+
+  </body>
 </html>
